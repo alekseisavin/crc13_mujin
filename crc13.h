@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 void crc13_table_init(void);
-uint16_t crc13(char* data, uint8_t length);
+uint16_t crc13(char* data, size_t length);
 
 #endif /* crc13.h */
 

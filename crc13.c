@@ -87,7 +87,7 @@ void crc13_table_init(void)
  * @param   length:   Length of CRC
  * @return  Calculated CRC
  */
-uint16_t crc13(char* data, uint8_t length)
+uint16_t crc13(char* data, size_t length)
 {
     uint16_t crc = CRC13_INITIAL_VALUE;
 
