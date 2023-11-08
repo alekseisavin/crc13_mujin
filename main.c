@@ -9,6 +9,7 @@ int main(void)
     char *data = NULL;
     size_t length = 0u;
     ssize_t chars_read = getline(&data, &length, stdin);
+    uint16_t calculated_crc = 0u;
 
     if (chars_read == -1)
     {
@@ -27,7 +28,9 @@ int main(void)
     {
         size_t chunk_length = (i + CRC13_CHUNK_SIZE <= chars_read) ? CRC13_CHUNK_SIZE : chars_read;
 
-        printf("CRC-13 of chunk %ld - %ld: 0x%X\n", i, (i + CRC13_CHUNK_SIZE) - 1u, crc13(data + i, chunk_length));
+        calculated_crc ^= crc13(data + i, chunk_length);
+
+        printf("CRC-13: 0x%X\n", calculated_crc);
     }
 
     free(data);
