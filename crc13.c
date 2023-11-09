@@ -17,7 +17,6 @@
 #define CRC13_POLYNOMIAL        (0x1909)
 #define CRC13_MASK              (0x1FFF)
 #define CRC13_LENGTH            (13u)
-#define CRC13_INITIAL_VALUE     (0u)
 
 static const uint16_t crc13_lut[256u] = 
 {
@@ -87,10 +86,8 @@ void crc13_table_init(void)
  * @param   length:   Length of CRC
  * @return  Calculated CRC
  */
-uint16_t crc13(char* data, size_t length)
+uint16_t crc13(char* data, size_t length, uint16_t crc)
 {
-    uint16_t crc = CRC13_INITIAL_VALUE;
-
     for (uint16_t i = 0; i < length; i++)
     {
         uint8_t index = (crc >> (CRC13_LENGTH - 8u)) ^ data[i];
